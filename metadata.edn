@@ -1,0 +1,8 @@
+{
+ :version  "0.1"
+ :target   "target"
+ :java-src "src/java"
+ :clj-src  "src/clj"
+ :main-ns  "tattler.core"
+ :verbose  true
+ }
