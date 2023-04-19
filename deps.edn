@@ -2,13 +2,15 @@
  :paths ["src/clj" "src/java"]
  :deps {
         org.clojure/clojure { :mvn/version "1.11.1" }
-        ;;org.freedesktop/libdbus-java { :mvn/version "2.7" }
-        ;;com.github.hypfvieh/libmatthew { :mvn/version "0.8.3" }
-        com.github.hypfvieh/dbus-java { :mvn/version "3.3.2" }
+        com.github.hypfvieh/dbus-java-core { :mvn/version "4.3.0" }
+        com.github.hypfvieh/dbus-java-transport-native-unixsocket { :mvn/version "4.3.0" }
+        org.fudo/milquetoast {
+                              :git/url "https://git.fudo.org/fudo-public/milquetoast.git"
+                              :git/sha "ae81b91f0c710632f55b43f0193e16ab0dd81dde"
+                              }
+        metosin/malli { :mvn/version "0.11.0" }
+        org.fudo/notifier { :mvn/version "0.1" }
         }
- ;; :mvn/repos {
- ;;             "in2p3" {:url "https://maven.in2p3.fr/"}
- ;;             }
  :aliases {
            :build {
                    :extra-deps {

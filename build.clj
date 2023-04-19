@@ -30,7 +30,7 @@
   (b/javac {:src-dirs   [java-src]
             :class-dir  (class-dir params)
             :basis      basis
-            :javac-opts ["-source" "12" "-target" "12"]})
+            :javac-opts ["-source" "16" "-target" "16"]})
   params)
 
 (defn compile-clj [{:keys [verbose clj-src] :as params}]
