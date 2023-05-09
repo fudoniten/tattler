@@ -56,8 +56,8 @@ in {
           "--mqtt-port=${cfg.mqtt.port}"
           "--notification-topic=${cfg.notification-topic}"
         ] ++ (optional cfg.verbose "--verbose")
-          ++ (optional cfg.mqtt.user "--mqtt-user=${cfg.mqtt.user}")
-          ++ (optional cfg.mqtt.password-file
+          ++ (optional (cfg.mqtt.user != null) "--mqtt-user=${cfg.mqtt.user}")
+          ++ (optional (cfg.mqtt.password-file != null)
             "--mqtt-user=${cfg.mqtt.password-file}")));
       };
     };
