@@ -4,7 +4,10 @@
         org.clojure/clojure { :mvn/version "1.11.1" }
         org.clojure/tools.cli {:mvn/version "1.0.214"}
         metosin/malli { :mvn/version "0.11.0" }
-        org.fudo/notifier { :mvn/version "0.1" }
+        org.fudo/notifier {
+                           :git/url "https://git.fudo.org/fudo-public/notifier.git"
+                           :git/sha "9142e3d8e9084fa2eb0d2e569b9b9165aac5a09a"
+                           }
         org.fudo/fudo-clojure {
                                :git/url "https://git.fudo.org/fudo-public/fudo-clojure.git"
                                :git/sha "2352892ad7d7cf7c6bd294005a28d55ef224862a"
