@@ -45,7 +45,7 @@ in {
     };
   };
 
-  config = mkIf enable {
+  config = mkIf cfg.enable {
     systemd.user.services.tattler = {
       path = [ tattler ];
       wantedBy = [ "default.target" ];
