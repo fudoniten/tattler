@@ -53,7 +53,7 @@ in {
         ExecStart = pkgs.writeShellScript "tattler.sh" (concatStringsSep " " ([
           "tattler"
           "--mqtt-host=${cfg.mqtt.host}"
-          "--mqtt-port=${cfg.mqtt.port}"
+          "--mqtt-port=${toString cfg.mqtt.port}"
           "--notification-topic=${cfg.notification-topic}"
         ] ++ (optional cfg.verbose "--verbose")
           ++ (optional (cfg.mqtt.user != null) "--mqtt-user=${cfg.mqtt.user}")
