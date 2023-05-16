@@ -14,13 +14,6 @@
       "rev": "ae81b91f0c710632f55b43f0193e16ab0dd81dde",
       "git-dir": "https/git.fudo.org/fudo-public/milquetoast",
       "hash": "sha256-8YF4ZLqlFGKyXWNB1u04qxCZIaI6/N25YIt7iIvSTh0="
-    },
-    {
-      "lib": "org.fudo/notifier",
-      "url": "https://git.fudo.org/fudo-public/notifier.git",
-      "rev": "9142e3d8e9084fa2eb0d2e569b9b9165aac5a09a",
-      "git-dir": "https/git.fudo.org/fudo-public/notifier",
-      "hash": "sha256-J43OJj33vVMBdrzc0WgTD7DIjQVh//+H/1R61MOv6gA="
     }
   ],
   "mvn-deps": [
@@ -73,31 +66,6 @@
       "mvn-path": "clj-tuple/clj-tuple/0.2.2/clj-tuple-0.2.2.pom",
       "mvn-repo": "https://repo.clojars.org/",
       "hash": "sha256-ahZELYfCkwwDImtKo9KYkVfVi5TtPnyNZ2aLDrZYOJs="
-    },
-    {
-      "mvn-path": "com/github/hypfvieh/dbus-java-core/4.3.0/dbus-java-core-4.3.0.jar",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-k1la5yyTxvZd1HzfYtW86jGs6AzX6BTI+PbcSNtAJL4="
-    },
-    {
-      "mvn-path": "com/github/hypfvieh/dbus-java-core/4.3.0/dbus-java-core-4.3.0.pom",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-ED//T8q3ej/DCG14WkMfMaDcUMU+i6ncBxrRHE3popI="
-    },
-    {
-      "mvn-path": "com/github/hypfvieh/dbus-java-parent/4.3.0/dbus-java-parent-4.3.0.pom",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-gZmhnlhJxUUKP6gxvIKPG4cNFUBH4y3aDVnosZp7EiY="
-    },
-    {
-      "mvn-path": "com/github/hypfvieh/dbus-java-transport-native-unixsocket/4.3.0/dbus-java-transport-native-unixsocket-4.3.0.jar",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-cYXILkQt1h0Tl2FqTzz6fSapiFz3S2rsnFvk47mItAs="
-    },
-    {
-      "mvn-path": "com/github/hypfvieh/dbus-java-transport-native-unixsocket/4.3.0/dbus-java-transport-native-unixsocket-4.3.0.pom",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-qAiYVOWFQkr2alSEqYiX5FMrnSoqt6AkFqKozQOhX5U="
     },
     {
       "mvn-path": "com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
@@ -598,21 +566,6 @@
       "mvn-path": "org/ow2/ow2/1.5/ow2-1.5.pom",
       "mvn-repo": "https://repo1.maven.org/maven2/",
       "hash": "sha256-D4obEW52C4/mOJxRuE5LB6cPwRCC1Pk25FO1g91QtDs="
-    },
-    {
-      "mvn-path": "org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.jar",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-LyqS1BCyaBOdfWO3XtJeIZlc/kEAwZvyNXfP28gHe9o="
-    },
-    {
-      "mvn-path": "org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.pom",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-i06GxT0ng2CPGuohPZBsW6xcBDPgCxkjm7FnZLn6NzY="
-    },
-    {
-      "mvn-path": "org/slf4j/slf4j-parent/2.0.6/slf4j-parent-2.0.6.pom",
-      "mvn-repo": "https://repo1.maven.org/maven2/",
-      "hash": "sha256-FIJlDL4x5AjB3IkCHLrh0wRK1KAb+PYro2C2qBOhMSQ="
     },
     {
       "mvn-path": "org/sonatype/oss/oss-parent/7/oss-parent-7.pom",
