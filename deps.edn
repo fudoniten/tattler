@@ -6,8 +6,7 @@
         metosin/malli { :mvn/version "0.11.0" }
         org.fudo/notifier {
                            :git/url "https://git.fudo.org/fudo-public/notifier.git"
-                           :git/sha "9142e3d8e9084fa2eb0d2e569b9b9165aac5a09a"
-                           ;; :local/root "/nix/store/zjbl2l2az2qdanxqqqp8mzyj4p3nvgh6-notifier-0.1/notifier-uber-0.1.jar"
+                           :git/sha "bda18253fc5f736a3bec36ac9f36ff49e03538e0"
                            }
         org.fudo/fudo-clojure {
                                :git/url "https://git.fudo.org/fudo-public/fudo-clojure.git"

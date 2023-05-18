@@ -240,11 +240,11 @@
         "utils": "utils_4"
       },
       "locked": {
-        "lastModified": 1684274921,
-        "narHash": "sha256-RH12Qx4u5LMomcBZaTBii1EhlHQ3TUgaKUcn+cqiClA=",
+        "lastModified": 1684300959,
+        "narHash": "sha256-lxcPAQCTHq/D7KCEHgZdOZGOUxJ+k8veS1BE4yN4H6c=",
         "ref": "with-deps",
-        "rev": "056710d1ef79ee9fabcd6808d3179779f65f45fd",
-        "revCount": 55,
+        "rev": "b1412015701216b9aaba651bc79c1a092bac6306",
+        "revCount": 66,
         "type": "git",
         "url": "https://git.fudo.org/fudo-public/nix-helpers.git"
       },
@@ -308,11 +308,11 @@
         "utils": "utils_5"
       },
       "locked": {
-        "lastModified": 1684275076,
-        "narHash": "sha256-8+1ZkJo/k/7j5uJF7PN8IOv5Z9niuO1cw1m4zyvrv9Y=",
+        "lastModified": 1684437865,
+        "narHash": "sha256-1smxtoypm69GBD2Bx6Ophtw4uYzbRCHHxyQN/WszrF0=",
         "ref": "refs/heads/master",
-        "rev": "8b1327f66a31873dc0cac3d6eb2fa5c957723757",
-        "revCount": 6,
+        "rev": "bda18253fc5f736a3bec36ac9f36ff49e03538e0",
+        "revCount": 7,
         "type": "git",
         "url": "https://git.fudo.org/fudo-public/notifier.git"
       },
