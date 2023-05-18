@@ -19,7 +19,10 @@
    [nil "--mqtt-user USER" "User as which to connect to MQTT server."]
    [nil "--mqtt-password-file PASSWD_FILE" "File containing password for MQTT user."]
 
-   [nil "--notification-topic TOPIC" "MQTT topic to which events should be published."]])
+   [nil "--notification-topic TOPIC" "MQTT topic to which events should be published."]
+   [nil "--urgency-threshold THRESHOLD" "Minimum urgency at which to send notification (0 is least and 10 is most)"
+    :parse-fn #(Integer/parseInt %)
+    :default  5]])
 
 (defn- msg-quit [status msg]
   (println msg)
@@ -42,10 +45,10 @@
     (update result :errors concat missing-errors)))
 
 (defn -main [& args]
-  (let [required-args #{:mqtt-host :mqtt-port :app-name :notification-topic}
+  (let [required-args #{:mqtt-host :mqtt-port :app-name :notification-topic :urgency-threshold}
         {:keys [options _ errors summary]} (parse-opts args required-args cli-opts)]
     (when (seq errors) (msg-quit 1 (usage summary errors)))
-    (let [{:keys [mqtt-host mqtt-port mqtt-user mqtt-password-file app-name notification-topic]} options
+    (let [{:keys [mqtt-host mqtt-port mqtt-user mqtt-password-file app-name notification-topic urgency-threshold]} options
           catch-shutdown (async/chan)
           mqtt-client (if mqtt-user
                         (mqtt/connect-json! :host mqtt-host
@@ -56,10 +59,11 @@
                                                           (str/trim)))
                         (mqtt/connect-json! :host mqtt-host :port mqtt-port))
           logger (log/print-logger)]
-      (tattler/listen! :app         app-name
-                       :mqtt-client mqtt-client
-                       :topic       notification-topic
-                       :logger      logger)
+      (tattler/listen! :app               app-name
+                       :mqtt-client       mqtt-client
+                       :topic             notification-topic
+                       :urgency-threshold urgency-threshold
+                       :logger            logger)
       (.addShutdownHook (Runtime/getRuntime)
                         (Thread. (fn [] (>!! catch-shutdown true))))
       (<!! catch-shutdown)

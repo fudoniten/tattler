@@ -17,15 +17,23 @@
   (t/schema [:map
              [:summary (sized-string 1 80)]
              [:body    (sized-string 1 256)]
-             [:urgency {:optional true} [:enum "low" "medium" "high"]]]))
+             [:urgency [:and :int [:>= 0] [:<= 10]]]]))
 
-(defn listen! [& {app :app mqtt-client :mqtt-client topic :topic logger :logger}]
+(defn listen! [& {app :app mqtt-client
+                  :mqtt-client topic
+                  :topic logger
+                  :logger urgency-threshold
+                  :urgency-threshold}]
   (let [note-chan (mqtt/subscribe! mqtt-client topic)]
     (go-loop [note-msg (<! note-chan)]
       (if note-msg
-        (let [note (-> note-msg :payload (update :urgency keyword))]
+        (let [note (:payload note-msg)]
           (if (t/validate Notification note)
-            (notify/send-notification! mqtt-client (assoc note :app app))
+            (when (>= (:urgency note) urgency-threshold)
+              (notify/send-notification! mqtt-client (assoc note :app app))
+              (log/info! logger (format "ignoring low-urgency message (%s): %s"
+                                        (:urgency note)
+                                        (:summary note))))
             (let [err (humanize (t/explain Notification note))]
               (log/error! logger (format "rejecting invalid notification: %s (%s)\n%s"
                                          (:summary err) (:body err)
