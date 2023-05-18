@@ -50,6 +50,8 @@ in {
       path = [ tattler ];
       wantedBy = [ "default.target" ];
       serviceConfig = {
+        DynamicUser = true;
+        LoadCredential = [ "mqtt.passwd:${cfg.mqtt.password-file}" ];
         ExecStart = pkgs.writeShellScript "tattler.sh" (concatStringsSep " " ([
           "tattler"
           "--mqtt-host=${cfg.mqtt.host}"
@@ -59,7 +61,8 @@ in {
         ] ++ (optional cfg.verbose "--verbose")
           ++ (optional (cfg.mqtt.user != null) "--mqtt-user=${cfg.mqtt.user}")
           ++ (optional (cfg.mqtt.password-file != null)
-            "--mqtt-user=${cfg.mqtt.password-file}")));
+            "--mqtt-user=$CREDENTIALS_DIRECTORY/mqtt.passwd")));
+        Restart = "always";
       };
     };
   };

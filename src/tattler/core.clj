@@ -26,6 +26,7 @@
                                           :body    (:body note)
                                           :urgency (-> note :urgency (keyword))
                                           })
-              (log/error! logger (format "rejecting invalid notification: %s" note)))
+              (log/error! logger (format "rejecting invalid notification: %s"
+                                         (->> note (t/explain Notification) (t/humanize)))))
             (recur (<! note-chan)))
         (log/info! logger "stopping")))))
