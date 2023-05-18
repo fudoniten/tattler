@@ -5,7 +5,8 @@
             [clojure.string :as str]
             [tattler.core :as tattler]
             [milquetoast.client :as mqtt]
-            [fudo-clojure.logging :as log]))
+            [fudo-clojure.logging :as log])
+  (:gen-class))
 
 (def cli-opts
   [["-v" "--verbose" "Provide verbose output."]

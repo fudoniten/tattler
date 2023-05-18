@@ -41,7 +41,7 @@
               [ (updateCljDeps cljLibs) ];
           };
           tattler = pkgs.mkShell {
-            buildInputs = with self.packages."${system}"; [ tattler-server ];
+            buildInputs = with self.packages."${system}"; [ tattler ];
           };
         };
       }) // {
