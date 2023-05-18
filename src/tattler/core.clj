@@ -34,7 +34,7 @@
       (if note-msg
         (let [note (:payload note-msg)]
           (if (t/validate Notification note)
-            (when (>= (:urgency note) urgency-threshold)
+            (if (>= (:urgency note) urgency-threshold)
               (notify/send-notification! mqtt-client
                                          (-> note
                                              (assoc  :app     app)
