@@ -21,19 +21,14 @@
 
 (defn listen! [& {app :app mqtt-client :mqtt-client topic :topic logger :logger}]
   (let [note-chan (mqtt/subscribe! mqtt-client topic)]
-    (go-loop [note (<! note-chan)]
-      (if note
-        (do (if (t/validate Notification note)
-              (notify/send-notification! mqtt-client
-                                         {
-                                          :app     app
-                                          :summary (:summary note)
-                                          :body    (:body note)
-                                          :urgency (-> note :urgency (keyword))
-                                          })
-              (let [err (humanize (t/explain Notification note))]
-                (log/error! logger (format "rejecting invalid notification: %s (%s)\n%s"
-                                           (:summary err) (:body err)
-                                           (pprint-to-string note)))))
-            (recur (<! note-chan)))
+    (go-loop [note-msg (<! note-chan)]
+      (if note-msg
+        (let [note (-> note-msg :payload (update :urgency keyword))]
+          (if (t/validate Notification note)
+            (notify/send-notification! mqtt-client (assoc note :app app))
+            (let [err (humanize (t/explain Notification note))]
+              (log/error! logger (format "rejecting invalid notification: %s (%s)\n%s"
+                                         (:summary err) (:body err)
+                                         (pprint-to-string note)))))
+          (recur (<! note-chan)))
         (log/info! logger "stopping")))))
