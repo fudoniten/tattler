@@ -47,12 +47,14 @@
     (when (seq errors) (msg-quit 1 (usage summary errors)))
     (let [{:keys [mqtt-host mqtt-port mqtt-user mqtt-password-file app-name notification-topic]} options
           catch-shutdown (async/chan)
-          mqtt-client (mqtt/connect-json! :host mqtt-host
-                                          :port mqtt-port
-                                          :username mqtt-user
-                                          :password (-> mqtt-password-file
-                                                        (slurp)
-                                                        (str/trim)))
+          mqtt-client (if mqtt-user
+                        (mqtt/connect-json! :host mqtt-host
+                                            :port mqtt-port
+                                            :username mqtt-user
+                                            :password (-> mqtt-password-file
+                                                          (slurp)
+                                                          (str/trim)))
+                        (mqtt/connect-json! :host mqtt-host :port mqtt-port))
           logger (log/print-logger)]
       (tattler/listen! :app         app-name
                        :mqtt-client mqtt-client
