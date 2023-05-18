@@ -3,11 +3,15 @@
             [milquetoast.client :as mqtt]
             [clojure.core.async :refer [go-loop <!]]
             [fudo-clojure.logging :as log]
+            [clojure.pprint :refer [pprint]]
             [malli.core :as t]
             [malli.error :refer [humanize]]))
 
 (defn- sized-string [min max]
   (t/schema [:string {:min min :max max}]))
+
+(defn- pprint-to-string [str]
+  (with-out-str (pprint str)))
 
 (def Notification
   (t/schema [:map
@@ -27,7 +31,9 @@
                                           :body    (:body note)
                                           :urgency (-> note :urgency (keyword))
                                           })
-              (log/error! logger (format "rejecting invalid notification: %s"
-                                         (humanize (t/explain Notification note)))))
+              (let [err (humanize (t/explain Notification note))]
+                (log/error! logger (format "rejecting invalid notification: %s (%s)\n%s"
+                                           (:summary err) (:body err)
+                                           (pprint-to-string note)))))
             (recur (<! note-chan)))
         (log/info! logger "stopping")))))
