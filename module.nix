@@ -55,6 +55,7 @@ in {
           "--mqtt-host=${cfg.mqtt.host}"
           "--mqtt-port=${toString cfg.mqtt.port}"
           "--notification-topic=${cfg.notification-topic}"
+          "--app-name=tattler"
         ] ++ (optional cfg.verbose "--verbose")
           ++ (optional (cfg.mqtt.user != null) "--mqtt-user=${cfg.mqtt.user}")
           ++ (optional (cfg.mqtt.password-file != null)
