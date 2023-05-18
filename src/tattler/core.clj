@@ -19,6 +19,11 @@
              [:body    (sized-string 1 256)]
              [:urgency [:and :int [:>= 0] [:<= 10]]]]))
 
+(defn- codify-urgency [urgency]
+  (cond (<= 0 urgency 3)  :low
+        (<= 4 urgency 7)  :normal
+        (<= 8 urgency 10) :critical))
+
 (defn listen! [& {app :app mqtt-client
                   :mqtt-client topic
                   :topic logger
@@ -30,7 +35,10 @@
         (let [note (:payload note-msg)]
           (if (t/validate Notification note)
             (when (>= (:urgency note) urgency-threshold)
-              (notify/send-notification! mqtt-client (assoc note :app app))
+              (notify/send-notification! mqtt-client
+                                         (-> note
+                                             (assoc  :app     app)
+                                             (update :urgency codify-urgency)))
               (log/info! logger (format "ignoring low-urgency message (%s): %s"
                                         (:urgency note)
                                         (:summary note))))
