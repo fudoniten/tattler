@@ -39,8 +39,9 @@
                                          (-> note
                                              (assoc  :app     app)
                                              (update :urgency codify-urgency)))
-              (log/info! logger (format "ignoring low-urgency message (%s): %s"
+              (log/info! logger (format "ignoring low-urgency message (%s < %s): %s"
                                         (:urgency note)
+                                        urgency-threshold
                                         (:summary note))))
             (let [err (humanize (t/explain Notification note))]
               (log/error! logger (format "rejecting invalid notification: %s (%s)\n%s"
