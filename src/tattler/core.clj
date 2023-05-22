@@ -24,25 +24,26 @@
         (<= 4 urgency 7)  :normal
         (<= 8 urgency 10) :critical))
 
-(defn listen! [& {app :app mqtt-client
-                  :mqtt-client topic
-                  :topic logger
-                  :logger urgency-threshold
-                  :urgency-threshold}]
+(defn listen! [& {app :app
+                  mqtt-client :mqtt-client
+                  topic :topic
+                  logger :logger
+                  urgency-threshold :urgency-threshold}]
   (let [note-chan (mqtt/subscribe! mqtt-client topic)]
     (go-loop [note-msg (<! note-chan)]
       (if note-msg
         (let [note (:payload note-msg)]
           (if (t/validate Notification note)
             (if (>= (:urgency note) urgency-threshold)
-              (notify/send-notification! mqtt-client
-                                         (-> note
-                                             (assoc  :app     app)
-                                             (update :urgency codify-urgency)))
+              (do (log/info! logger (format "notification: %s" (:summary note)))
+                (notify/send-notification! mqtt-client
+                                           (-> note
+                                               (assoc  :app     app)
+                                               (update :urgency codify-urgency))))
               (log/info! logger (format "ignoring low-urgency message (%s < %s): %s"
                                         (:urgency note)
                                         urgency-threshold
-                                        note)))
+                                        (:summary note))))
             (let [err (humanize (t/explain Notification note))]
               (log/error! logger (format "rejecting invalid notification: %s (%s)\n%s"
                                          (:summary err) (:body err)
