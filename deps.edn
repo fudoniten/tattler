@@ -5,8 +5,9 @@
         org.clojure/tools.cli {:mvn/version "1.0.214"}
         metosin/malli { :mvn/version "0.11.0" }
         org.fudo/notifier {
-                           :git/url "https://git.fudo.org/fudo-public/notifier.git"
-                           :git/sha "bda18253fc5f736a3bec36ac9f36ff49e03538e0"
+                           :local/root "/nix/store/qqfnbwp1vg3r0ni2sj096pas67drx45l-org.fudo-notifier-0.1.jar"
+                           ; :git/url "https://git.fudo.org/fudo-public/notifier.git"
+                           ; :git/sha "bda18253fc5f736a3bec36ac9f36ff49e03538e0"
                            }
         org.fudo/fudo-clojure {
                                :git/url "https://git.fudo.org/fudo-public/fudo-clojure.git"

@@ -29,17 +29,18 @@
                   topic :topic
                   logger :logger
                   urgency-threshold :urgency-threshold}]
-  (let [note-chan (mqtt/subscribe! mqtt-client topic)]
+  (let [note-chan (mqtt/subscribe! mqtt-client topic)
+        bus       (notify/connect-session-bus)]
     (go-loop [note-msg (<! note-chan)]
       (if note-msg
         (let [note (:payload note-msg)]
           (if (t/validate Notification note)
             (if (>= (:urgency note) urgency-threshold)
               (do (log/info! logger (format "notification: %s" (:summary note)))
-                (notify/send-notification! mqtt-client
-                                           (-> note
-                                               (assoc  :app     app)
-                                               (update :urgency codify-urgency))))
+                  (notify/send-notification! bus
+                                             (-> note
+                                                 (assoc  :app     app)
+                                                 (update :urgency codify-urgency))))
               (log/info! logger (format "ignoring low-urgency message (%s < %s): %s"
                                         (:urgency note)
                                         urgency-threshold

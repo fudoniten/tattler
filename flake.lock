@@ -271,11 +271,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1684398685,
-        "narHash": "sha256-TRE62m91iZ5ArVMgA+uj22Yda8JoQuuhc9uwZ+NoX+0=",
+        "lastModified": 1684580438,
+        "narHash": "sha256-LUPswmDn6fXP3lEBJFA2Id8PkcYDgzUilevWackYVvQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "628d4bb6e9f4f0c30cfd9b23d3c1cdcec9d3cb5c",
+        "rev": "7dc71aef32e8faf065cb171700792cf8a65c152d",
         "type": "github"
       },
       "original": {
@@ -308,11 +308,11 @@
         "utils": "utils_5"
       },
       "locked": {
-        "lastModified": 1684439408,
-        "narHash": "sha256-bwDKPzgkjYj7nYgdvKSy3QmbL/fbVQI1A4LxA6JL7Gw=",
+        "lastModified": 1684784801,
+        "narHash": "sha256-7d8blW6tVHMTdgAQB2Dh470XsvWbD5gICwgXrS/90Xg=",
         "ref": "refs/heads/master",
-        "rev": "8a26333322a180bf62e7aed01e6d19d748c225d7",
-        "revCount": 8,
+        "rev": "6ff2823f55812d527ce6fd022caf78a438afb371",
+        "revCount": 9,
         "type": "git",
         "url": "https://git.fudo.org/fudo-public/notifier.git"
       },
