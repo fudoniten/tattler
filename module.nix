@@ -48,7 +48,8 @@ in {
   config = mkIf cfg.enable {
     systemd.user.services.tattler = {
       path = [ tattler ];
-      wantedBy = [ "default.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = pkgs.writeShellScript "tattler.sh" (concatStringsSep " " ([
           "tattler"
