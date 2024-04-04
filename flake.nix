@@ -5,7 +5,7 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
     utils.url = "github:numtide/flake-utils";
     helpers = {
-      url = "git+https://fudo.dev/public/nix-helpers.git?ref=with-deps";
+      url = "git+https://fudo.dev/public/nix-helpers.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     notifierClj = {
@@ -22,6 +22,7 @@
         cljLibs = {
           "org.fudo/notifier" = "${notifierClj.packages."${system}".notifier}";
         };
+
       in {
         packages = rec {
           default = tattler;
@@ -37,7 +38,7 @@
           default = updateDeps;
           updateDeps = pkgs.mkShell {
             buildInputs = with helpers.packages."${system}";
-              [ (updateCljDeps cljLibs) ];
+              [ (updateClojureDeps cljLibs) ];
           };
           tattler = pkgs.mkShell {
             buildInputs = [ self.packages."${system}".tattler ];

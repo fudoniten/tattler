@@ -5,17 +5,16 @@
         org.clojure/tools.cli {:mvn/version "1.0.214"}
         metosin/malli { :mvn/version "0.11.0" }
         org.fudo/notifier {
-                           :local/root "/nix/store/qqfnbwp1vg3r0ni2sj096pas67drx45l-org.fudo-notifier-0.1.jar"
-                           ; :git/url "https://git.fudo.org/fudo-public/notifier.git"
-                           ; :git/sha "bda18253fc5f736a3bec36ac9f36ff49e03538e0"
+                           :git/url "https://fudo.dev/public/notifier.git"
+                           :git/sha "06c061a7ca3bf3a7e37b20eb95d42159575b0ae5"
                            }
         org.fudo/fudo-clojure {
-                               :git/url "https://git.fudo.org/fudo-public/fudo-clojure.git"
-                               :git/sha "2352892ad7d7cf7c6bd294005a28d55ef224862a"
+                               :git/url "https://fudo.dev/public/fudo-clojure.git"
+                               :git/sha "12eff55c8b2a3b3a84c58b81315dbdf7284b991b"
                                }
         org.fudo/milquetoast {
-                              :git/url "https://git.fudo.org/fudo-public/milquetoast.git"
-                              :git/sha "ae81b91f0c710632f55b43f0193e16ab0dd81dde"
+                              :git/url "https://fudo.dev/public/milquetoast.git"
+                              :git/sha "9960525a3ec0045190daa6a5db596e6826a32aed"
                               }
         }
 }
