@@ -5,11 +5,11 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
     utils.url = "github:numtide/flake-utils";
     helpers = {
-      url = "git+https://fudo.dev/public/nix-helpers.git";
+      url = "github:fudoniten/fudo-nix-helpers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     notifierClj = {
-      url = "git+https://fudo.dev/public/notifier.git";
+      url = "github:fudoniten/clojure-notifier";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
